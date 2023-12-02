@@ -26,7 +26,8 @@ class SearchingController extends GetxController {
   /// The [Map] parameter represents request body
   Future<void> callGetVanDon() async {
     try {
-      getGetVanDonResp = await Get.find<ApiClient>().getVanDon();
+      String code = editTextController.text;
+      getGetVanDonResp = await Get.find<ApiClient>().getVanDon(code);
       _handleGetVanDonSuccess();
     } on GetGetVanDonResp catch (e) {
       getGetVanDonResp = e;

@@ -53,7 +53,7 @@ class SearchingScreen extends GetWidget<SearchingController> {
       case BottomBarEnum.Nhng:
         return "/";
       case BottomBarEnum.Traccgihng:
-        return AppRoutes.billingPage;
+        return AppRoutes.billingContainerScreen;
       default:
         return "/";
     }
@@ -92,9 +92,18 @@ class SearchingScreen extends GetWidget<SearchingController> {
   /// Navigates to the orderDetailScreen when the action is triggered.
   void _onSearchingSuccess() {
     Get.toNamed(AppRoutes.orderDetailScreen, arguments: {
-      NavigationArgs.code: controller.getGetVanDonResp.data?.code
+      NavigationArgs.code: controller.getGetVanDonResp.data?.code,
+      NavigationArgs.fromName: controller.getGetVanDonResp.data?.fromName,
+      NavigationArgs.fromAddress1: controller.getGetVanDonResp.data?.fromAddress1,
+      NavigationArgs.toName: controller.getGetVanDonResp.data?.toName,
+      NavigationArgs.toAddress1: controller.getGetVanDonResp.data?.toAddress1,
+      NavigationArgs.moTa: controller.getGetVanDonResp.data?.moTa,
+      NavigationArgs.ngayNhan: controller.getGetVanDonResp.data?.ngayNhan,
+      NavigationArgs.cuocPhiTongTien: controller.getGetVanDonResp.data?.cuocPhiTongTien,
+      NavigationArgs.loaiHang: controller.getGetVanDonResp.data?.loaiHang?.name,
     });
   }
+
 
   /// Displays a toast message using the Fluttertoast library.
   void _onSearchingError() {

@@ -32,11 +32,11 @@ class ApiClient extends GetConnect {
   /// with the provided headers and request data
   /// Returns a [GetGetVanDonResp] object representing the response.
   /// Throws an error if the request fails or an exception occurs.
-  Future<GetGetVanDonResp> getVanDon() async {
+  Future<GetGetVanDonResp> getVanDon(String code) async {
     ProgressDialogUtils.showProgressDialog();
     try {
       await isNetworkConnected();
-      Response response = await httpClient.get('$url/api/Van-Don/NInvFRgJus');
+      Response response = await httpClient.get('$url/api/Van-Don/$code');
       ProgressDialogUtils.hideProgressDialog();
       if (_isSuccessCall(response)) {
         return GetGetVanDonResp.fromJson(response.body);

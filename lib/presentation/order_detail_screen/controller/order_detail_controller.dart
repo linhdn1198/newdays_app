@@ -10,6 +10,14 @@ import 'package:newdaysexpress/data/apiClient/api_client.dart';
 /// current orderDetailModelObj
 class OrderDetailController extends GetxController {
   var code = Get.arguments[NavigationArgs.code];
+  var fromName = Get.arguments[NavigationArgs.fromName];
+  var fromAddress1 = Get.arguments[NavigationArgs.fromAddress1];
+  var toName = Get.arguments[NavigationArgs.toName];
+  var toAddress1 = Get.arguments[NavigationArgs.toAddress1];
+  var moTa = Get.arguments[NavigationArgs.moTa];
+  var ngayNhan = Get.arguments[NavigationArgs.ngayNhan];
+  var cuocPhiTongTien = Get.arguments[NavigationArgs.cuocPhiTongTien];
+  var loaiHang = Get.arguments[NavigationArgs.loaiHang];
 
   Rx<OrderDetailModel> orderDetailModelObj = OrderDetailModel().obs;
 
@@ -20,7 +28,7 @@ class OrderDetailController extends GetxController {
   /// The [Map] parameter represents request body
   Future<void> callGetVanDon() async {
     try {
-      getGetVanDonResp = await Get.find<ApiClient>().getVanDon();
+      getGetVanDonResp = await Get.find<ApiClient>().getVanDon(code);
       _handleGetVanDonSuccess();
     } on GetGetVanDonResp catch (e) {
       getGetVanDonResp = e;
@@ -57,19 +65,19 @@ class OrderDetailController extends GetxController {
   /// If the call fails, the function calls the `_onGetVanDonError()` function.
   ///
   /// Throws a `NoInternetException` if there is no internet connection.
-  @override
-  Future<void> onReady() async {
-    try {
-      await callGetVanDon();
-      _onGetVanDonSuccess();
-    } on GetGetVanDonResp {
-      _onGetVanDonError();
-    } on NoInternetException catch (e) {
-      Get.rawSnackbar(message: e.toString());
-    } catch (e) {
-      //TODO: Handle generic errors
-    }
-  }
+  // @override
+  // Future<void> onReady() async {
+  //   try {
+  //     await callGetVanDon();
+  //     _onGetVanDonSuccess();
+  //   } on GetGetVanDonResp {
+  //     _onGetVanDonError();
+  //   } on NoInternetException catch (e) {
+  //     Get.rawSnackbar(message: e.toString());
+  //   } catch (e) {
+  //     //TODO: Handle generic errors
+  //   }
+  // }
 
   void _onGetVanDonSuccess() {}
   void _onGetVanDonError() {}

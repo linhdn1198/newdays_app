@@ -16,8 +16,7 @@ class OrderDetailScreen extends GetWidget<OrderDetailController> {
     return SafeArea(
         child: Scaffold(
             backgroundColor: theme.colorScheme.onPrimaryContainer,
-            body: SizedBox(
-                width: double.maxFinite,
+            body: SingleChildScrollView(
                 child: Column(children: [
                   _buildSeventeen(),
                   Container(
@@ -28,47 +27,51 @@ class OrderDetailScreen extends GetWidget<OrderDetailController> {
                         SizedBox(height: 2.v),
                         Align(
                             alignment: Alignment.centerLeft,
-                            child: Obx(() => Text(
-                                controller
-                                    .orderDetailModelObj.value.title.value,
+                            child: Text("#" + controller.code,
                                 style:
-                                    CustomTextStyles.bodyMediumBluegray900_2))),
+                                    CustomTextStyles.bodyMediumBluegray900_2)),
                         SizedBox(height: 10.v),
                         Padding(
                             padding: EdgeInsets.only(right: 1.h),
                             child: _buildFrame1(
                                 label: "lbl_c_ng_ty_g_i".tr,
                                 label1: "msg_express_logistics".tr)),
-                        _buildFrame(
-                            label: "lbl_g_i_t".tr,
-                            label1: "msg_107_nguy_n_phong".tr),
-                        _buildFrame(
-                            label: "msg_c_c_ph_v_n_chuy_n".tr,
-                            label1: "lbl_44_880".tr),
+                        Padding(
+                            padding: EdgeInsets.only(right: 1.h),
+                            child:  _buildFrame1(
+                                label: "lbl_g_i_t".tr,
+                                label1: controller.fromName)),
+                        Padding(
+                            padding: EdgeInsets.only(right: 1.h),
+                            child: _buildFrame1(
+                                label: "msg_c_c_ph_v_n_chuy_n".tr,
+                                label1: controller.cuocPhiTongTien.toString())),
                         SizedBox(height: 34.v),
                         Padding(
                             padding: EdgeInsets.only(right: 2.h),
                             child: _buildFrame1(
                                 label: "lbl_ng_y_t_o".tr,
-                                label1: "msg_28_09_2023_10_44_34".tr)),
+                                label1: controller.ngayNhan)),
                         Padding(
                             padding: EdgeInsets.only(right: 2.h),
                             child: _buildFrame1(
                                 label: "lbl_c_t_o_b_i".tr,
-                                label1: "msg_nguy_n_ng_c_thanh".tr)),
+                                label1: controller.fromName)),
                         Padding(
                             padding: EdgeInsets.only(right: 2.h),
                             child: _buildFrame1(
                                 label: "lbl_g_i_n2".tr,
-                                label1: "lbl_nguyen".tr)),
-                        _buildFrame(
-                            label: "msg_m_t_chi_ti_t_n".tr,
-                            label1: "lbl_h_ng_d_v".tr),
+                                label1: controller.toName)),
+                        Padding(
+                            padding: EdgeInsets.only(right: 2.h),
+                            child: _buildFrame1(
+                                label: "msg_m_t_chi_ti_t_n".tr,
+                                label1: controller.moTa)),
                         Padding(
                             padding: EdgeInsets.only(right: 2.h),
                             child: _buildFrame1(
                                 label: "lbl_a_ch_n".tr,
-                                label1: "msg_107_nguy_n_phong2".tr)),
+                                label1: controller.toAddress1)),
                         Padding(
                             padding: EdgeInsets.only(right: 2.h),
                             child: _buildFrame1(
@@ -83,7 +86,7 @@ class OrderDetailScreen extends GetWidget<OrderDetailController> {
                             padding: EdgeInsets.only(right: 2.h),
                             child: _buildFrame1(
                                 label: "lbl_lo_i_h_ng".tr,
-                                label1: "msg_h_ng_h_a_non_doc".tr)),
+                                label1: controller.loaiHang.toString())),
                         Padding(
                             padding: EdgeInsets.only(right: 2.h),
                             child: _buildFrame1(
@@ -173,7 +176,7 @@ class OrderDetailScreen extends GetWidget<OrderDetailController> {
       case BottomBarEnum.Nhng:
         return "/";
       case BottomBarEnum.Traccgihng:
-        return AppRoutes.billingPage;
+        return AppRoutes.billingContainerScreen;
       default:
         return "/";
     }

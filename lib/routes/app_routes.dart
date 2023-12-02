@@ -21,7 +21,7 @@ import 'package:get/get.dart';
 class AppRoutes {
   static const String billingPage = '/billing_page';
 
-  static const String billingContainerScreen = '/billing_container_screen';
+  static const String billingContainerScreen = '/billing_screen';
 
   static const String billingResultScreen = '/billing_result_screen';
 
